@@ -21,7 +21,7 @@ backend/
 #### **Étape 1 : ENTITÉ (Entity)**
 - **Objectif** : Définir la structure de la table `todos` en base de données
 - **Annotations clés** : `@Entity`, `@Id`, `@GeneratedValue`, `@Column`
-- **Champs standards** : `id`, `title`, `completed`, `createdAt`
+- **Champs standards** : `id`, `title`, `completed`
 - **Lombok utilisé** pour générer automatiquement getters/setters/constructeurs
 
 #### **Étape 2 : REPOSITORY**
@@ -90,13 +90,6 @@ frontend/
   - 4 colonnes : `todo`, `inProgress`, `review`, `done`
   - Chaque colonne = signal contenant un tableau
   - Drag & Drop entre colonnes
-- **Fonctionnalités UI** :
-  - Ajout de tâches avec input + bouton
-  - Suppression avec bouton poubelle
-  - Feedback visuel (loading, erreurs)
-  - Mode sombre/clair
-
----
 
 ## 🔗 COMMUNICATION FRONTEND/BACKEND
 
@@ -118,20 +111,8 @@ DELETE http://localhost:8080/api/todos/{id}
 
 ## 🎨 INTERFACE UTILISATEUR
 
-### 🏗️ Layout Kanban
-```
-┌─────────────────────────────────────────────────────┐
-│                     Liste de Tâches                  │
-├─────────────────────────────────────────────────────┤
-│ [Input] + [Bouton Ajouter]                          │
-├───────┬─────────────┬──────────────┬───────────────┤
-│ À faire│ En cours   │ En revue     │ Terminé       │
-├───────┼─────────────┼──────────────┼───────────────┤
-│ • Task │ • Task     │ • Task       │ • Task        │
-│ • Task │ • Task     │              │ • Task        │
-│       │             │              │               │
-└───────┴─────────────┴──────────────┴───────────────┘
-```
+<img width="1721" height="808" alt="image" src="https://github.com/user-attachments/assets/dc539b40-f600-4b84-a5a2-07b9e2bdbbcd" />
+
 
 ### ✨ Caractéristiques UI
 - **Drag & Drop** : Glisser-déposer entre colonnes
@@ -177,15 +158,11 @@ DELETE http://localhost:8080/api/todos/{id}
 
 ---
 
-## 📸 CAPTURES D'ÉCRAN (À AJOUTER)
+## 📸 CAPTURES D'ÉCRAN 
 
-1. **Interface principale** : Vue Kanban avec 4 colonnes
-2. **Ajout de tâche** : Champ input avec bouton
-3. **Drag & Drop** : Tâche en cours de déplacement
-4. **Mode sombre** : Interface avec thème sombre activé
-5. **Suppression** : Confirmation avant suppression
 
----
+
+
 
 ## ✅ FONCTIONNALITÉS IMPLÉMENTÉES
 
