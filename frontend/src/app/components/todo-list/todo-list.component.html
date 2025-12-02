@@ -1,0 +1,99 @@
+<div class="container">
+  <header>
+    <h1>Liste de Tâches</h1>
+  </header>
+</div>
+
+<!-- AJOUT D'UNE TÂCHE -->
+<section class="add-todo">
+  <input #input matInput placeholder="Nouvelle tâche..."
+         (keyup.enter)="addTodo(input.value); input.value='';" />
+
+  <button mat-raised-button color="primary"
+          (click)="addTodo(input.value); input.value='';">
+    Ajouter
+  </button>
+  <mat-icon>add</mat-icon>
+</section>
+
+<p *ngIf="isLoading()">Chargement...</p>
+
+<div cdkDropListGroup class="kanban">
+
+  <!-- COLONNE 1 : À FAIRE -->
+  <div class="column">
+    <h2>À faire</h2>
+
+     <div cdkDropList id="todosList"
+        [cdkDropListData]="todos()"
+        class="list"
+        (cdkDropListDropped)="drop($event)">
+
+      <div class="box" cdkDrag *ngFor="let item of todos()">
+        <span>{{ item.title }}</span>
+        <button mat-icon-button color="warn" 
+                (click)="delete(item.id); $event.stopPropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE 2 : EN COURS -->
+  <div class="column">
+    <h2>En cours</h2>
+
+     <div cdkDropList id="inProgressList"
+        [cdkDropListData]="inProgress()"
+        class="list"
+        (cdkDropListDropped)="drop($event)">
+
+      <div class="box" cdkDrag *ngFor="let item of inProgress()">
+        <span>{{ item.title || item }}</span>
+        <button mat-icon-button color="warn" 
+                (click)="delete(item.id); $event.stopPropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE 3 : EN REVUE -->
+  <div class="column">
+    <h2>En revue</h2>
+
+     <div cdkDropList id="reviewList"
+        [cdkDropListData]="review()"
+        class="list"
+        (cdkDropListDropped)="drop($event)">
+
+      <div class="box" cdkDrag *ngFor="let item of review()">
+        <span>{{ item.title || item }}</span>
+        <button mat-icon-button color="warn" 
+                (click)="delete(item.id); $event.stopPropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE 4 : TERMINÉ -->
+  <div class="column">
+    <h2>Terminé</h2>
+
+     <div cdkDropList id="doneList"
+        [cdkDropListData]="done()"
+        class="list"
+        (cdkDropListDropped)="drop($event)">
+
+      <div class="box" cdkDrag *ngFor="let item of done()">
+        <span>{{ item.title || item }}</span>
+        <button mat-icon-button color="warn" 
+                (click)="delete(item.id); $event.stopPropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,201 @@
+/* frontend/src/app/components/todo-list/todo-list.component.scss */
+
+/* Variables */
+$bg: #f6f8fa;
+$card: #ffffff;
+$primary: #1976d2;
+$muted: #6b7280;
+$success: #16a34a;
+$shadow: 0 6px 18px rgba(20, 20, 40, 0.06);
+
+/* Column colors */
+$todo-color: #e6f0ff; /* pale blue */
+$inprogress-color: #fff7e6; /* pale yellow/orange */
+$review-color: #f3e8ff; /* pale purple */
+$done-color: #e6fff0; /* pale green */
+
+$todo-accent: #1976d2; /* blue */
+$inprogress-accent: #f59e0b; /* amber/orange */
+$review-accent: #7c3aed; /* purple */
+$done-accent: #16a34a; /* green */
+
+/* Page container */
+.container {
+  max-width: 1100px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  header h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: #111827;
+    font-weight: 600;
+  }
+}
+
+/* Add todo */
+.add-todo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 1rem auto;
+  max-width: 1100px;
+
+  input[matInput] {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid rgba(16,24,40,0.06);
+    background: $card;
+    box-shadow: none;
+    font-size: 0.95rem;
+  }
+
+  button[mat-raised-button] {
+    background: $primary;
+    color: white;
+    border-radius: 6px;
+    padding: 0.5rem 0.9rem;
+    box-shadow: $shadow;
+  }
+
+  mat-icon {
+    color: $primary;
+    font-size: 22px;
+    margin-left: 0.25rem;
+  }
+}
+
+/* Loading */
+p {
+  color: $muted;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Kanban layout */
+.kanban {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Column */
+.column {
+  flex: 1 1 240px;
+  min-width: 220px;
+  background: transparent;
+
+  h2 {
+    font-size: 1.05rem;
+    margin: 0 0 0.5rem 0;
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  .list {
+    background: lighten($bg, 2%);
+    border-radius: 10px;
+    padding: 0.75rem;
+    min-height: 160px;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: none;
+    transition: background-color 0.15s ease;
+  }
+}
+
+/* Color each column differently using nth-child (matches template order) */
+.kanban > .column:nth-child(1) {
+  h2 { color: $todo-accent; }
+  .list { background: $todo-color; }
+  .box { border-left: 4px solid $todo-accent; }
+}
+
+.kanban > .column:nth-child(2) {
+  h2 { color: $inprogress-accent; }
+  .list { background: $inprogress-color; }
+  .box { border-left: 4px solid $inprogress-accent; }
+}
+
+.kanban > .column:nth-child(3) {
+  h2 { color: $review-accent; }
+  .list { background: $review-color; }
+  .box { border-left: 4px solid $review-accent; }
+}
+
+.kanban > .column:nth-child(4) {
+  h2 { color: $done-accent; }
+  .list { background: $done-color; }
+  .box { border-left: 4px solid $done-accent; }
+}
+
+/* Task cards */
+.box {
+  display: block;
+  background: $card;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  margin: 0 0 0.5rem 0;
+  box-shadow: $shadow;
+  cursor: grab;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  color: #0f172a;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.box .title {
+  font-weight: 600;
+}
+
+.box .meta {
+  font-size: 0.82rem;
+  color: $muted;
+}
+
+.box.completed {
+  opacity: 0.85;
+  text-decoration: line-through;
+}
+
+/* Dragging styles provided by CDK */
+.cdk-drag-preview {
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.18) !important;
+  transform: rotate(-2deg) !important;
+  border-radius: 8px;
+}
+
+.cdk-drag-placeholder {
+  background: rgba(0,0,0,0.03);
+  border: 2px dashed rgba(0,0,0,0.06);
+  min-height: 48px;
+  border-radius: 8px;
+}
+
+.cdk-drag-animating {
+  transition: transform 200ms cubic-bezier(.2, .8, .2, 1);
+}
+
+/* Visual feedback for drop area */
+.list.cdk-drop-list-dragging {
+  background: rgba(0,0,0,0.02);
+  border-radius: 10px;
+}
+
+/* Small screens: stack columns */
+@media (max-width: 880px) {
+  .kanban {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .add-todo {
+    padding: 0.5rem;
+  }
+}

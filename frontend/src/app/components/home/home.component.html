@@ -1,0 +1,14 @@
+
+<div class="text-center mt-3">
+  <p>A : {{ a() }}</p>
+  <p>B : {{ b() }}</p>
+  <button class="btn btn-success me-2" (click)="incrementer(a)">+A</button>
+  <button class="btn btn-warning me-2" (click)="decrementer(a)">-A</button>
+  <button class="btn btn-success me-2" (click)="incrementer(b)">+B</button>
+  <button class="btn btn-warning me-2" (click)="decrementer(b)">-B</button>
+   <button class="btn btn-warning me-2" (click)="reset(a)">resetA</button>
+    <button class="btn btn-warning me-2" (click)="reset(b)">resetB</button>
+
+    <p>Sum : {{ sum() }}</p>
+ 
+</div>
